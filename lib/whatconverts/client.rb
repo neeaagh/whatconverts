@@ -1,10 +1,9 @@
 module Whatconverts
   class Client
 
-    attr_accessor :api_token, :api_secret, :http_service
+    attr_accessor :api_token, :api_secret
     
     def initialize
-      @http_service = HttpService.new
       yield self if block_given?
     end
 
@@ -24,6 +23,12 @@ module Whatconverts
     def edit_lead(lead_id, params = {})
       params.merge!(method: :post)
       http_service.make_request("leads/#{lead_id}", params)
+    end
+
+    private
+
+    def http_service
+      HttpService.new(api_token, api_secret)
     end
 
   end
