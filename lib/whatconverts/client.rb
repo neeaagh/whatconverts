@@ -8,6 +8,12 @@ module Whatconverts
       yield self if block_given?
     end
 
+    def leads(params = {})
+      http_service('leads', params)
+    end
+
+    private
+
     def http_service(endpoint, params = {})
       method = params.delete(:method) { :get }
       response =  connection.send(method, endpoint, params)
@@ -15,8 +21,6 @@ module Whatconverts
       raise error if error
       JOSN.parse(response.body)
     end
-
-    private
 
     def connection
       conn = Faraday.new(url: API_URL)
