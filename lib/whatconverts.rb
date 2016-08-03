@@ -3,6 +3,7 @@ require 'faraday'
 
 require 'whatconverts/version'
 require 'whatconverts/client'
+require 'whatconverts/http_service'
 require 'whatconverts/error_checker'
 require 'whatconverts/api_error'
 
