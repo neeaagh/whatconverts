@@ -12,6 +12,19 @@ module Whatconverts
       http_service('leads', params)
     end
 
+    def lead(lead_id, params = {})
+      http_service("leads/#{lead_id}", params)
+    end
+
+    def create_lead(params = {})
+      http_service('leads', method: :post)
+    end
+
+    def edit_lead(lead_id, params = {})
+      params.merge!(method: :post)
+      http_service("leads/#{lead_id}", params)
+    end
+
     private
 
     def http_service(endpoint, params = {})
@@ -19,7 +32,7 @@ module Whatconverts
       response =  connection.send(method, endpoint, params)
       error = ErrorChecker.new(response).error_if_appropriate
       raise error if error
-      JOSN.parse(response.body)
+      JSON.parse(response.body)
     end
 
     def connection
