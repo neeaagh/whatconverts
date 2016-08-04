@@ -10,18 +10,20 @@ describe Whatconverts::Client do
 
   describe '#leads' do
 
-    before do
-      stub_get('leads').to_return(body: File.new(File.expand_path('../../fixtures', __FILE__) + '/leads_all.json'))
-    end
-
     it 'returns all leads' do
+      stub_get('leads').to_return(body: File.new(File.expand_path('../../fixtures', __FILE__) + '/leads_all.json'))
+      
       leads = @client.leads
       expect(a_get('leads')).to have_been_made
       expect(leads['leads'].count).to eq(3)
     end
 
     it 'returns filtered leads' do
-      skip
+      stub_get('leads', { lead_type: 'phone_call' }).to_return(body: File.new(File.expand_path('../../fixtures', __FILE__) + '/leads_filtered.json'))
+
+      leads = @client.leads(lead_type: 'phone_call')
+      expect(a_get('leads', lead_type: 'phone_call')).to have_been_made
+      expect(leads['leads'].count).to eq(1)
     end
   end
 
