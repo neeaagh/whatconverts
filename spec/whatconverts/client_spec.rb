@@ -11,7 +11,7 @@ describe Whatconverts::Client do
   describe '#leads' do
 
     before do
-      stub_get('leads').to_return(body: 'test')
+      stub_get('leads').to_return(body: File.new(File.expand_path('../../fixtures', __FILE__) + '/leads_all.json'))
     end
 
     it 'returns all leads' do
