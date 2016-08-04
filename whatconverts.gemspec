@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A Ruby gem for interacting with the WhatConverts API.}
   spec.description   = %q{A Ruby gem for interacting with the WhatConverts API.}
-  spec.homepage      = "https://https://github.com/neeaagh/whatconverts"
+  spec.homepage      = "https://github.com/neeaagh/whatconverts"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
