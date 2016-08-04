@@ -24,13 +24,18 @@ describe Whatconverts::Client do
       leads = @client.leads(lead_type: 'phone_call')
       expect(a_get('leads', lead_type: 'phone_call')).to have_been_made
       expect(leads['leads'].count).to eq(1)
+      expect(leads['leads'].first['lead_type']).to eq('Phone Call')
     end
   end
 
   describe '#lead' do
 
     it 'returns the correct lead' do
-      skip
+      lead_id = 123
+      stub_get("leads/#{lead_id}").to_return(body: fixture('lead.json'))
+      lead = @client.lead(lead_id)
+      expect(a_get("leads/#{lead_id}")).to have_been_made
+      expect(lead['leads'].first['lead_id']).to eq(lead_id)
     end
   end
 
