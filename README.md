@@ -21,7 +21,28 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+client = Whatconverts::Client.new do |config|
+  config.api_token = 'YOUR_API_TOKEN'
+  config.api_secret = 'TOUR_API_SECRET'
+end
 
+# retrieve leads
+client.leads
+
+# retrieve leads with param filtering
+client.leads(lead_type: 'phone_call', lead_status: 'unique')
+
+# fetch lead by ID
+client.lead(999)
+
+# create new lead
+client.create_lead(
+  lead_type: 'Web Form',
+  form_name: 'My Form'
+)
+
+# edit existing lead
+client.edit_lead(999, lead_source: 'google')
 ```
 
 ## Contributing
