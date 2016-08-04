@@ -23,7 +23,7 @@ Or install it yourself as:
 ```ruby
 client = Whatconverts::Client.new do |config|
   config.api_token = 'YOUR_API_TOKEN'
-  config.api_secret = 'TOUR_API_SECRET'
+  config.api_secret = 'YOUR_API_SECRET'
 end
 
 # retrieve leads
