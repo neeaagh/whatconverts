@@ -7,6 +7,3 @@ require 'whatconverts/http_service'
 require 'whatconverts/error_checker'
 require 'whatconverts/errors'
 
-module Whatconverts
-  # Your code goes here...
-end
