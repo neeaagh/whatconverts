@@ -17,6 +17,7 @@ describe Whatconverts::Client do
     it 'returns all leads' do
       leads = @client.leads
       expect(a_get('leads')).to have_been_made
+      expect(leads['leads'].count).to eq(3)
     end
 
     it 'returns filtered leads' do
