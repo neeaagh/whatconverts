@@ -10,8 +10,13 @@ describe Whatconverts::Client do
 
   describe '#leads' do
 
+    before do
+      stub_get('leads').to_return(body: 'test')
+    end
+
     it 'returns all leads' do
-      skip
+      leads = @client.leads
+      expect(a_get('leads')).to have_been_made
     end
 
     it 'returns filtered leads' do
