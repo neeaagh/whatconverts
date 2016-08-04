@@ -42,7 +42,14 @@ describe Whatconverts::Client do
   describe '#create_lead' do
 
     it 'creates a lead' do
-      skip
+      lead_params = {
+        lead_type: 'web_form',
+        form_name: 'Test Form'
+      }
+      stub_post('leads', lead_params).to_return(body: '{"lead_id":123}')
+      lead_response = @client.create_lead(lead_params)
+      expect(a_post('leads', lead_params)).to have_been_made
+      expect(lead_response['lead_id']).to eq(123)
     end
   end
 
