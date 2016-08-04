@@ -56,7 +56,12 @@ describe Whatconverts::Client do
   describe '#edit_lead' do
 
     it 'updates a lead' do
-      skip
+      lead_params = { lead_source: 'google' }
+      lead_id = 123
+      stub_post("leads/#{lead_id}", lead_params).to_return(body: '{"lead_id":123}')
+      lead_response = @client.edit_lead(lead_id, lead_params)
+      expect(a_post("leads/#{lead_id}", lead_params)).to have_been_made
+      expect(lead_response['lead_id']).to eq(lead_id)
     end
   end
 end
