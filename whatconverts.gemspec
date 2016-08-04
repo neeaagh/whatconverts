@@ -11,13 +11,15 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A Ruby gem for interacting with the WhatConverts API.}
   spec.description   = %q{A Ruby gem for interacting with the WhatConverts API.}
-  spec.homepage      = "https://whatconverts.com/api"
+  spec.homepage      = "https://https://github.com/neeaagh/whatconverts"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  s.required_ruby_version = ">= 2.0.0"
 
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
