@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Whatconverts::Client do
+describe Whatconverts::Client::Lead do
   before do
     @client = Whatconverts::Client.new do |client|
       client.api_token = 'API TOKEN'
@@ -12,7 +12,7 @@ describe Whatconverts::Client do
 
     it 'returns all leads' do
       stub_get('leads').to_return(body: fixture('leads_all.json'))
-      
+
       leads = @client.leads
       expect(a_get('leads')).to have_been_made
       expect(leads['leads'].count).to eq(3)
@@ -62,26 +62,6 @@ describe Whatconverts::Client do
       lead_response = @client.edit_lead(lead_id, lead_params)
       expect(a_post("leads/#{lead_id}", lead_params)).to have_been_made
       expect(lead_response['lead_id']).to eq(lead_id)
-    end
-  end
-
-  describe '#accounts' do
-
-    it 'returns all accounts' do
-      stub_get('accounts').to_return(body: fixture('accounts_all.json'))
-      
-      accounts = @client.accounts
-      expect(a_get('accounts')).to have_been_made
-      expect(accounts['accounts'].count).to eq(3)
-    end
-
-    it 'returns filtered accounts' do
-      stub_get('accounts', { accounts_per_page: 1 }).to_return(body: fixture('accounts_filtered.json'))
-
-      accounts = @client.accounts(accounts_per_page: 1)
-      expect(a_get('accounts', accounts_per_page: 1)).to have_been_made
-      expect(accounts['accounts'].count).to eq(1)
-      expect(accounts['accounts'].first['account_name']).to eq('Auto Store')
     end
   end
 
