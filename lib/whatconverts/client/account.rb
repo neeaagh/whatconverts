@@ -19,9 +19,9 @@ module Whatconverts
         http_service.make_request("accounts/#{account_id}", params)
       end
 
-      def delete_account(account_id)
+      def delete_account(account_id, params = {})
         params.merge!(method: :delete)
-        http_service.make_request('account_id', params)
+        http_service.make_request("accounts/#{account_id}", params)
       end
 
     end
