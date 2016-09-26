@@ -60,12 +60,12 @@ describe Whatconverts::Client::Profile do
 
   describe '#edit_profile' do
 
-    it 'updates an profile' do
+    it 'updates a profile' do
       params = { profile_name: 'Test Profile 2' }
       profile_id = 123
       stub_post("#{@profiles_endpoint}/#{profile_id}", params)
         .to_return(
-          body: '{"profile_id": 123, "profile_name":"Test Account 2"}, "date_created": "2016-06-24T17:24:42Z"}'
+          body: '{"profile_id": 123, "profile_name":"Test Account 2", "date_created": "2016-06-24T17:24:42Z"}'
       )
       response = @client.edit_profile(@account_id, profile_id, params)
       expect(a_post("#{@profiles_endpoint}/#{profile_id}", params)).to have_been_made
